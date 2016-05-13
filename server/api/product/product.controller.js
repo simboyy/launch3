@@ -12,6 +12,28 @@ function isJson(str) {
   return str
 }
 
+
+// Get all products by a user
+exports.myProducts = function(req, res) {
+  console.log(req);
+  Product.find({'uid' : req.user.email},function (err, products) {
+    if(err) { return handleError(res, err); }
+    return res.status(200).json(products);
+  });
+};
+
+
+exports.pubProducts = function(req, res) {
+  console.log(req.user.email);
+   Product.find({'uid' : req.user.email},function (err, products) {
+    if(err) { console.log(err) ;return handleError(res, err); }
+    // console.log(products);
+    return res.status(200).json(products);
+  });
+};
+
+
+
 // Get all features group
 exports.count = function(req, res) {
   if(req.query){
