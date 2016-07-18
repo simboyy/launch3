@@ -56,6 +56,12 @@ exports.update = function(req, res) {
      user.email = req.body.email;
      user.company = req.body.company;
      user.phone = req.body.phone;
+     user.address = req.body.address;
+     user.photo = req.body.photo;
+     user.lastname = req.body.lastname;
+     user.bankname = req.body.bankname;
+     user.branch = req.body.branch;
+     user.accountNumber = req.body.accountNumber;
       user.save(function(err) {
         if (err) return validationError(res, err);
         res.status(200).send('OK');

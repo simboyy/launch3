@@ -17,6 +17,12 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  address:String,
+  photo:{},
+  billing:Array,
+  bankname:String,
+  branch:String,
+  accountNumbber:String,
   hashedPassword: String,
   provider: String,
   salt: String,

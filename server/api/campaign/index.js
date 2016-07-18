@@ -8,6 +8,7 @@ var router = express.Router();
 
 router.get('/my', auth.isAuthenticated() , controller.myCampaigns);
 router.get('/pub', auth.isAuthenticated() , controller.pubCampaigns);
+router.get('/count', controller.count);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', auth.isAuthenticated(), controller.create);

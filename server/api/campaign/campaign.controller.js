@@ -3,6 +3,18 @@
 var _ = require('lodash');
 var Campaign = require('./campaign.model');
 
+// Get all features group
+exports.count = function(req, res) {
+  if(req.query){
+    var q = isJson(req.query.where);
+    Campaign.find(q).count().exec(function (err, count) {
+      if(err) { return handleError(res, err); }
+      return res.status(200).json([{count:count}]);
+    });
+  }
+};
+
+
 // Get all campaigns by a user
 exports.myCampaigns = function(req, res) {
   Campaign.find({'uid' : req.user.email},function (err, campaigns) {
