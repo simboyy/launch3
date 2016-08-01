@@ -22,7 +22,7 @@ var UserSchema = new Schema({
   billing:Array,
   bankname:String,
   branch:String,
-  accountNumbber:String,
+  accountNumber:String,
   hashedPassword: String,
   provider: String,
   salt: String,
