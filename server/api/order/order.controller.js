@@ -6,6 +6,28 @@ var Order = require('./order.model');
 // Get all orders by a user
 exports.myOrders = function(req, res) {
   Order.find({'uid' : req.user.email},function (err, orders) {
+
+  		var total = 0;
+  	
+  	for (var i = 0; i < orders.length; i++) {
+  		var item = orders[i];
+  		  for (var j = 0; j < item.items.length; j++) {
+
+                // items[i].total = 0;
+              
+               var p = item.items[j].price;
+               var q = item.items[j].quantity;
+               total+=(p*q);
+               
+             }
+
+             item.totalSpend = total;
+            // console.log(item.totalSpend);
+             total = 0;
+             
+
+  	}
+
     if(err) { return handleError(res, err); }
     return res.status(200).json(orders);
   });
@@ -13,8 +35,31 @@ exports.myOrders = function(req, res) {
 // get publisher orders
 exports.pubOrders = function(req, res) {
    Order.find({'items.uid' : req.user.email},function (err, orders) {
+
+   //	console.log(orders);
+
+   		var total = 0;
+  	
+  	for (var i = 0; i < orders.length; i++) {
+  		var item = orders[i];
+  		  for (var j = 0; j < item.items.length; j++) {
+
+                // items[i].total = 0;
+              
+               var p = item.items[j].price;
+               var q = item.items[j].quantity;
+               total+=(p*q);
+               
+             }
+
+             item.totalSpend = total;
+             //console.log(item.totalSpend);
+             total = 0;
+             
+
+  	}
     if(err) { return handleError(res, err); }
-    // console.log(orders);
+    //console.log(orders);
     return res.status(200).json(orders);
   });
 };
@@ -43,6 +88,7 @@ exports.create = function(req, res) {
   req.body.orderNo = shortId.generate();
   req.body.status = {name:"Order Placed", val:201};
   Order.create(req.body, function(err, order) {
+  	 	
     if(err) { return handleError(res, err); }
     return res.status(201).json(order);
   });

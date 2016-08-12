@@ -1,0 +1,186 @@
+/* Animations */
+#page-wrapper.open-add,
+#page-wrapper.open-remove {
+    transition: padding 350ms linear;
+}
+
+#page-wrapper.open-add-active,
+#page-wrapper.open {
+    padding-left: 250px;
+}
+
+#page-wrapper.open-add #sidebar-wrapper,
+#page-wrapper.open-remove #sidebar-wrapper{
+    transition: left 350ms linear;
+}
+
+#page-wrapper.open-add-active #sidebar-wrapper,
+#page-wrapper.open #sidebar-wrapper {
+    left: 150px;
+}
+
+ng-include.ng-enter,
+[ng-include].ng-enter,
+ng-view.ng-enter,
+[ng-view].ng-enter {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+ng-include.ng-enter-active,
+[ng-include].ng-enter-active,
+ng-view.ng-enter-active,
+[ng-view].ng-enter-active {
+    opacity: 1;
+}
+
+.alert-container.ng-leave {
+    transition: margin 1.5s;
+}
+
+.alert-container.ng-leave-active {
+    -webkit-animation-name: hinge;
+    animation-name: hinge;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+}
+
+.notification-select-icon.ng-enter,
+.notification-select-icon.ng-leave {
+    transition: opacity 250ms;
+}
+
+.notification-select-icon.ng-enter,
+.notification-select-icon.ng-leave-active {
+    opacity: 0;
+}
+
+.notification-select-icon.ng-enter-active {
+    opacity: 1;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+        margin-bottom: -97px;
+    }
+
+    60% {
+        transform: translate3d(3%, 0, 0);
+    }
+
+    83% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        margin-bottom: 15px;
+    }
+}
+
+@-webkit-keyframes slide-in {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+        margin-bottom: -97px;
+    }
+
+    60% {
+        transform: translate3d(3%, 0, 0);
+    }
+
+    83% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        margin-bottom: 15px;
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        transform: translate3d(0, 0, 0);
+        margin-bottom: 15px;
+    }
+
+    23% {
+        transform: translate3d(3%, 0, 0);
+    }
+
+    83% {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(-100%, 0, 0);
+        margin-bottom: -97px;
+    }
+}
+
+@-webkit-keyframes slide-out {
+    0% {
+        transform: translate3d(0, 0, 0);
+        margin-bottom: 15px;
+    }
+
+    23% {
+        transform: translate3d(3%, 0, 0);
+    }
+
+    83% {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(-100%, 0, 0);
+        margin-bottom: -97px;
+    }
+}
+
+.charity.ng-enter,
+.charity.ng-leave {
+    -webkit-animation-duration: 900ms;
+    animation-duration: 900ms;
+}
+
+.charity.ng-enter {
+    -webkit-animation-name: slide-in;
+    animation-name: slide-in;
+}
+
+.charity.ng-leave {
+    -webkit-animation-name: slide-out;
+    animation-name: slide-out;
+}
+
+.charity.ng-enter-stagger,
+.charity.ng-leave-stagger {
+    -webkit-animation-delay: 200ms;
+    animation-delay: 200ms;
+    -webkit-animation-duration: 0s;
+    animation-duration: 0s;
+}
+
+.form-control.ng-invalid-add,
+.form-control.ng-invalid-remove {
+    transition: 350ms border-color;
+}
+
+[ng-message].ng-enter,
+[ng-message].ng-leave {
+    transition: 500ms margin, 500ms opacity;
+}
+
+[ng-message].ng-enter,
+[ng-message].ng-leave-active.ng-leave-active {
+    opacity: 0;
+    margin-bottom: -52px;
+}
+
+[ng-message].ng-enter-active,
+[ng-message].ng-leave {
+    opacity: 1;
+    margin-bottom: 20px;
+}

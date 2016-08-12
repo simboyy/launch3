@@ -11,11 +11,16 @@ var UserSchema = new Schema({
   email: { type: String, lowercase: true },
   phone:String,
   company:String,
+  website:String,
   currency:String,
   timeZone:String,
   role: {
     type: String,
     default: 'user'
+  },
+  status: {
+  	type:String,
+  	default:"Inactive"
   },
   address:String,
   photo:{},

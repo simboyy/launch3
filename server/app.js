@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
 var config = require('./config/environment');
 //update
 // Connect to database
+//if(process.env.MONGOLAB_URI)
 mongoose.connect(process.env.MONGOLAB_URI);
 //mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {

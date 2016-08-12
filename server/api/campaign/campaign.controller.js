@@ -2,6 +2,14 @@
 
 var _ = require('lodash');
 var Campaign = require('./campaign.model');
+function isJson(str) {
+  try {
+      str = JSON.parse(str);
+  } catch (e) {
+      str = str;
+  }
+  return str
+}
 
 // Get all features group
 exports.count = function(req, res) {
@@ -17,7 +25,42 @@ exports.count = function(req, res) {
 
 // Get all campaigns by a user
 exports.myCampaigns = function(req, res) {
-  Campaign.find({'uid' : req.user.email},function (err, campaigns) {
+function isJson(str) {
+  try {
+      str = JSON.parse(str);
+  } catch (e) {
+      str = str;
+  }
+  return str
+}
+  var q = isJson(req.query.where);
+
+  //console.log(q);
+
+  Campaign.find(q,function (err, campaigns) {
+
+
+  	var total = 0;
+  	
+  	for (var i = 0; i < campaigns.length; i++) {
+  		var item = campaigns[i];
+
+  		  for (var j = 0; j < item.items.length; j++) {
+
+                // items[i].total = 0;
+              //console.log(item.items[j].status.name);
+               var p = item.items[j].price;
+               var q = item.items[j].quantity;
+               total+=(p*q);
+               
+             }
+
+             item.totalSpend = total;
+             item.totalWeight = total;
+             total = 0;
+             //console.log(campaigns.totalWeight);
+
+  	}
     if(err) { return handleError(res, err); }
     return res.status(200).json(campaigns);
   });
@@ -25,7 +68,38 @@ exports.myCampaigns = function(req, res) {
 
 // Get all campaigns for a publisher
 exports.pubCampaigns = function(req, res) {
-  Campaign.find({ "items.uid" : req.user.email},function (err, campaigns) {
+	function isJson(str) {
+  try {
+      str = JSON.parse(str);
+  } catch (e) {
+      str = str;
+  }
+  return str
+}
+  var q = isJson(req.query.where);
+
+  Campaign.find(q,function (err, campaigns) {
+
+  		var total = 0;
+  	
+  	for (var i = 0; i < campaigns.length; i++) {
+  		var item = campaigns[i];
+  		  for (var j = 0; j < item.items.length; j++) {
+
+                // items[i].total = 0;
+              
+               var p = item.items[j].price;
+               var q = item.items[j].quantity;
+               total+=(p*q);
+               
+             }
+
+             item.totalSpend = total;
+             item.totalWeight = total;
+             total = 0;
+             //console.log(campaigns.totalWeight);
+
+  	}
     if(err) { return handleError(res, err); }
     return res.status(200).json(campaigns);
   });
@@ -57,6 +131,8 @@ exports.create = function(req, res) {
   req.body.campaignNo = shortId.generate();
   req.body.status = {name:"New", val:201};
   Campaign.create(req.body, function(err, campaign) {
+
+  	 
     if(err) { console.log(err);return handleError(res, err); }
     return res.status(201).json(campaign);
   });
@@ -64,12 +140,16 @@ exports.create = function(req, res) {
 
 // Updates an existing campaign in the DB.
 exports.update = function(req, res) {
-  console.log(req.body);
+  
+
   if(req.body._id) { delete req.body._id; }
   if(req.body.__v) { delete req.body.__v; }
   // req.body.uid = req.user.email; // id change on every login hence email is used
 
+
+
   if(req.body.items){
+  	
     
   req.body.updated = Date.now();
   Campaign.findById(req.params.id, function (err, campaign) {
@@ -84,22 +164,22 @@ exports.update = function(req, res) {
 }
 
 else{
+	
 
    Campaign.findById(req.params.id, function (err, campaign) {
 
     if (err) { return handleError(res, err); }
     if(!campaign) { return res.status(404).send('Not Found'); }
     campaign.items= [];
-
-    for (var i = 0; i < campaign.items.length; i++) {
-      campaign.items[i].price;
-      console.log(campaign.items[i].price);
-    }
-
-
     campaign.items = req.body;
+    campaign.items[0].uid = req.body.email;
+    console.log(campaign);
+
+
    
     campaign.save(function (err) {
+    			// create reusable transporter object using the default SMTP transport
+		
       if (err) { return handleError(res, err); }
       return res.status(200).json(campaign);
     });
@@ -123,7 +203,7 @@ exports.updateStatus = function(req, res) {
 
     for (var i = 0; i < campaign.items.length; i++) {
       campaign.items[i].price;
-      console.log(campaign.items[i].price);
+      //console.log(campaign.items[i].price);
     }
 
 

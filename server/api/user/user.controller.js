@@ -109,6 +109,7 @@ exports.update = function(req, res) {
      user.name = req.body.name;
      user.email = req.body.email;
      user.company = req.body.company;
+     user.website = req.body.website;
      user.phone = req.body.phone;
      user.address = req.body.address;
      user.photo = req.body.photo;

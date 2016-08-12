@@ -11,6 +11,8 @@ var ProductSchema = new Schema({
   email:String,
   slug: String,
   logo:Array,
+  website:String,
+  terms:String,
   category: {_id: String, name: String, slug: String, category: String, parentCategory: String, },
   status: String,
   brand: {_id: String, name: String, info: String, slug: String},

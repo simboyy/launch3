@@ -26,7 +26,7 @@ var CampaignSchema = new Schema({
   updated: {type: Date},
   campaignDate: {type: Date, default: Date.now},
   status: Object({ name: String, val: Number}),
-  items: [{ sku: String, name: String, size: String, quantity: String, mrp: String, price: String, image: String, category: String,advertiser: Object ,publisher:String,uid:String,status: Object({ name: String, val: Number}) ,creative:Object,request: [{startDate: {type: Date},endDate: {type: Date},dueDate:  {type: Date},budget:String,objective: String,contactName:String ,contactEmail:String}],messages:[{id: String,text: String,avatar: String, date: {type:Date}}]}]
+  items: [{ sku: String, name: String, size: String, quantity: String, mrp: String, price: String, image: String, category: String,advertiser: Object ,publisher:String, uid:String, status: Object({ name: String, val: Number}) ,creative:Object,request: [{startDate: {type: Date},endDate: {type: Date},dueDate:  {type: Date},budget:String,objective: String,contactName:String ,contactEmail:String}],messages:[{id: String,text: String,avatar: String, date: {type:Date}}]}]
   }, { versionKey: false });
 
 module.exports = mongoose.model('Campaign', CampaignSchema);
