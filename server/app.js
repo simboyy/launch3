@@ -13,16 +13,16 @@ var mongoose = require('mongoose');
 var config = require('./config/environment');
 //update
 // Connect to database
-//if(process.env.MONGOLAB_URI)
+if(process.env.MONGOLAB_URI)
 mongoose.connect(process.env.MONGOLAB_URI);
-//mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {
 	console.error('MongoDB connection error: ' + err);
 	process.exit(-1);
 	}
 );
 // Populate DB with sample data
-if(config.seedDB) { require('./config/seed'); }
+//if(config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();

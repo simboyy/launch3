@@ -648,32 +648,7 @@ Category.find(function (err, data) {
 
 Brand.find(function (err, data) {
   if(data.length < 1){
-    Brand.create({
-    "_id" : "5607c58bdddfb6780c5bddf3",
-    "name" : "Estelle",
-    "info" : "Estelle",
-    "slug" : "estelle",
-    "active" : true,
-    "__v" : 0
-}, {
-    "_id" : "5607c599dddfb6780c5bddf4",
-    "name" : "FREECULTR",
-    "info" : "FREECULTR",
-    "slug" : "freecultr",
-    "active" : true,
-    "__v" : 0
-},{
-    "active" : true,
-    "__v" : 0,
-    "slug" : "alleviater",
-    "info" : "Alleviater",
-    "name" : "Alleviater",
-    "_id" : "5607c5c1dddfb6780c5bddf8"
-}, function() {
-        console.log('finished populating brands');
-    });
-  }
-});
+    
 
 Country.find(function (err, data) {
   if(data.length < 1){
